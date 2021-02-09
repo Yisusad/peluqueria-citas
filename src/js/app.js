@@ -30,6 +30,10 @@ async function mostrarServicios(){
             //Generar div contenedor de Servicio
             const servicioDiv = document.createElement('DIV');
             servicioDiv.classList.add('servicio');
+            servicioDiv.dataset.idServicio = id;
+
+            //Seleccionar servicio
+            servicioDiv.onclick = selecionarServicio;
 
             //Agregar precio y nombre a Div
             servicioDiv.appendChild(nombreServicio);
@@ -41,5 +45,22 @@ async function mostrarServicios(){
         });
     } catch (error) {
         console.log(error);
+    }
+}
+
+function selecionarServicio(e){
+
+    let elemento;
+    // Forzar click al DIV
+    if(e.target.tagName === 'P'){
+        elemento = e.target.parentElement;
+    }else{
+        elemento = e.target;
+    }
+
+    if(elemento.classList.contains('seleccionado')){
+        elemento.classList.remove('seleccionado');  
+    }else{
+        elemento.classList.add('seleccionado');
     }
 }
