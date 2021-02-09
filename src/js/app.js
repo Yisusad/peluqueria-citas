@@ -17,7 +17,27 @@ async function mostrarServicios(){
             const {id, nombre, precio} = servicio;
 
             //DOM Scripting
-            
+            //Generar Nombre de Servicio
+            const nombreServicio = document.createElement('P');
+            nombreServicio.textContent = nombre;
+            nombreServicio.classList.add('nombre-servicio');
+
+            //Generar PrecioServicio
+            const precioServicio = document.createElement('P');
+            precioServicio.textContent = `$ ${precio}`;
+            precioServicio.classList.add('precio-servicio');
+
+            //Generar div contenedor de Servicio
+            const servicioDiv = document.createElement('DIV');
+            servicioDiv.classList.add('servicio');
+
+            //Agregar precio y nombre a Div
+            servicioDiv.appendChild(nombreServicio);
+            servicioDiv.appendChild(precioServicio);
+
+            //Agregar en Html
+            document.querySelector('#servicios').appendChild(servicioDiv);
+
         });
     } catch (error) {
         console.log(error);
