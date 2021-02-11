@@ -1,4 +1,12 @@
 let pagina = 1;
+
+const cita = {
+    nombre: '',
+    fecha: '',
+    hora: '',
+    servicios:[]
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     iniciarApp();
 });
@@ -18,6 +26,9 @@ function iniciarApp(){
 
     //Comprobar pagina Actual para definir Siguiente/Anterior
     botonesPaginador();
+
+    //Muestra el resumen de la cita o mensaje de error en caso de no pasar la validacion
+    mostrarResumen();
 }
 function mostrarSeccion() {
     //Eliminar mostrar-seccion de secion anterior
@@ -145,4 +156,24 @@ function botonesPaginador(){
     }
 
     mostrarSeccion();
+}
+
+function mostrarResumen() {
+    //Destructuring
+    const {nombre, fecha, hora, servicios} = cita;
+    
+    //Seleccionar Resumen
+    const resumenDiv = document.querySelector('.contenido-resumen');
+
+    //Validacion de Objeto
+
+    if(Object.values(cita).includes('')){
+        const noServicios = document.createElement('P');
+        noServicios.textContent = 'Faltan datos de Servicios, hora, fecha, nombre';
+
+        noServicios.classList.add('invalidar-cita');
+        
+        //Agregar a resumenDiv
+        resumenDiv.appendChild(noServicios);
+    }
 }
